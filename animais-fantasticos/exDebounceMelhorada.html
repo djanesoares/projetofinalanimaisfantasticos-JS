@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplo Debouce</title>
+</head>
+
+<body>
+  <style>
+    body {
+      height: 1000px;
+    }
+  </style>
+
+  <script>
+
+
+
+    function debounce(callback, delay) {
+      let timer;
+
+      return (...args) => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          callback(...args);
+          timer = null;
+        }, delay);
+      }
+    }
+
+    function onScroll() {
+      console.log('teste');
+    }
+
+    const debounceScroll = debounce(onScroll, 200);
+
+    window.addEventListener('scroll', debounceScroll);
+    
+  </script>
+</body>
+
+</html>
